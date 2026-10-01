@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b0d12">
+<meta name="theme-color" content="#080a0f">
+<meta name="description" content="Creator Rate Card Calculator - Hitung estimasi harga endorse content creator.">
 <title>Creator Rate Card Calculator</title>
 
 <style>
@@ -13,65 +14,112 @@
   padding:0;
 }
 
+:root{
+  --bg:#080a0f;
+  --card:#11141b;
+  --card2:#0d1118;
+  --border:#252b38;
+  --text:#f5f7fb;
+  --muted:#9299a8;
+  --purple:#7c3aed;
+  --blue:#2563eb;
+  --green:#22c55e;
+  --yellow:#f59e0b;
+  --red:#ef4444;
+}
+
 body{
-  font-family:Inter,Arial,sans-serif;
-  background:#080a0f;
-  color:#f5f7fb;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 20% 0%,rgba(124,58,237,.13),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(37,99,235,.12),transparent 28%),
+    var(--bg);
+  color:var(--text);
   min-height:100vh;
 }
 
 .container{
-  width:min(1100px,94%);
+  width:min(1120px,94%);
   margin:auto;
-  padding:25px 0 50px;
+  padding:25px 0 45px;
 }
+
+/* HEADER */
 
 .header{
   text-align:center;
-  padding:25px 10px 30px;
+  padding:25px 10px 32px;
 }
 
 .logo{
+  width:58px;
+  height:58px;
+  border-radius:17px;
   display:inline-flex;
-  width:55px;
-  height:55px;
-  border-radius:16px;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(135deg,#7c3aed,#2563eb);
-  font-size:27px;
-  margin-bottom:15px;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  font-size:28px;
+  margin-bottom:14px;
+  box-shadow:0 10px 30px rgba(124,58,237,.25);
 }
 
 .header h1{
-  font-size:30px;
-  margin-bottom:8px;
+  font-size:31px;
+  font-weight:900;
+  letter-spacing:-.6px;
+}
+
+.header h1 span{
+  background:linear-gradient(90deg,#a78bfa,#60a5fa);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
 .header p{
-  color:#9299a8;
+  color:var(--muted);
   font-size:14px;
+  margin-top:8px;
 }
+
+/* LAYOUT */
 
 .grid{
   display:grid;
-  grid-template-columns:380px 1fr;
+  grid-template-columns:390px 1fr;
   gap:20px;
+  align-items:start;
 }
 
 .card{
-  background:#11141b;
-  border:1px solid #222733;
+  background:rgba(17,20,27,.94);
+  border:1px solid var(--border);
   border-radius:20px;
   padding:22px;
-  box-shadow:0 10px 35px rgba(0,0,0,.2);
+  box-shadow:0 12px 40px rgba(0,0,0,.22);
 }
 
 .card-title{
+  display:flex;
+  align-items:center;
+  gap:9px;
   font-size:17px;
-  font-weight:700;
+  font-weight:800;
   margin-bottom:20px;
 }
+
+.card-title .icon{
+  width:34px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:#191d29;
+}
+
+/* FORM */
 
 .form-group{
   margin-bottom:17px;
@@ -84,7 +132,8 @@ label{
   margin-bottom:8px;
 }
 
-input,select{
+input,
+select{
   width:100%;
   background:#0a0d13;
   color:#fff;
@@ -93,15 +142,25 @@ input,select{
   padding:13px 14px;
   outline:none;
   font-size:14px;
+  transition:.2s;
 }
 
-input:focus,select:focus{
+input:focus,
+select:focus{
   border-color:#6d5dfc;
   box-shadow:0 0 0 3px rgba(109,93,252,.12);
 }
 
+select{
+  cursor:pointer;
+}
+
 .input-wrap{
   position:relative;
+}
+
+.input-wrap input{
+  padding-right:75px;
 }
 
 .suffix{
@@ -110,14 +169,58 @@ input:focus,select:focus{
   top:13px;
   color:#737b8a;
   font-size:13px;
+  pointer-events:none;
 }
 
+/* BUTTON */
+
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+}
+
+button{
+  flex:1;
+  border:0;
+  border-radius:12px;
+  padding:13px;
+  font-weight:800;
+  cursor:pointer;
+  font-size:14px;
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  color:#fff;
+  box-shadow:0 8px 22px rgba(76,60,220,.22);
+}
+
+.btn-secondary{
+  background:#202530;
+  color:#fff;
+}
+
+/* TIER */
+
 .tier{
-  padding:14px;
-  border-radius:14px;
+  padding:15px;
+  border-radius:15px;
   background:linear-gradient(135deg,#191c29,#121520);
   border:1px solid #30364a;
   margin-bottom:18px;
+}
+
+.tier-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .tier-label{
@@ -127,9 +230,21 @@ input:focus,select:focus{
 
 .tier-name{
   font-size:23px;
-  font-weight:800;
+  font-weight:900;
   margin-top:3px;
 }
+
+.tier-badge{
+  background:rgba(124,58,237,.18);
+  color:#b69cff;
+  border:1px solid rgba(124,58,237,.3);
+  padding:6px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:800;
+}
+
+/* PRICE */
 
 .result-price{
   text-align:center;
@@ -142,32 +257,78 @@ input:focus,select:focus{
 
 .result-price small{
   color:#a7adbb;
+  font-size:12px;
 }
 
 .price{
-  font-size:32px;
+  font-size:31px;
   font-weight:900;
   margin-top:7px;
   background:linear-gradient(90deg,#a78bfa,#60a5fa);
   -webkit-background-clip:text;
+  background-clip:text;
   color:transparent;
+  line-height:1.2;
 }
 
 .price-sub{
   color:#8c94a5;
   font-size:13px;
-  margin-top:5px;
+  margin-top:6px;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-bottom:20px;
+}
+
+.stat{
+  background:#0d1118;
+  border:1px solid #252c38;
+  border-radius:13px;
+  padding:12px;
+}
+
+.stat-label{
+  color:#7e8797;
+  font-size:11px;
+  margin-bottom:6px;
+}
+
+.stat-value{
+  font-size:14px;
+  font-weight:800;
+  word-break:break-word;
+}
+
+/* BREAKDOWN */
+
+.section{
+  margin-top:20px;
+}
+
+.section-title{
+  font-size:15px;
+  font-weight:800;
+  margin-bottom:12px;
 }
 
 .breakdown{
-  margin-top:15px;
+  background:#0d1118;
+  border:1px solid #252c38;
+  border-radius:15px;
+  padding:4px 14px;
 }
 
 .row{
   display:flex;
   justify-content:space-between;
   gap:15px;
-  padding:11px 0;
+  padding:13px 0;
   border-bottom:1px solid #202530;
   font-size:13px;
 }
@@ -182,17 +343,31 @@ input:focus,select:focus{
 
 .row strong{
   color:#fff;
+  text-align:right;
 }
 
-.section{
-  margin-top:20px;
+.total-row{
+  margin-top:10px;
+  padding:16px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#171327,#10131d);
+  border:1px solid #342d57;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.section-title{
-  font-size:15px;
-  font-weight:700;
-  margin-bottom:12px;
+.total-row span{
+  color:#9da5b5;
+  font-size:13px;
 }
+
+.total-row strong{
+  color:#fff;
+  font-size:17px;
+}
+
+/* TIPS */
 
 .tip{
   padding:13px;
@@ -201,7 +376,7 @@ input:focus,select:focus{
   border-radius:12px;
   color:#aeb5c3;
   font-size:13px;
-  line-height:1.6;
+  line-height:1.55;
   margin-bottom:8px;
 }
 
@@ -209,38 +384,1471 @@ input:focus,select:focus{
   color:#fff;
 }
 
-.actions{
+/* RATE CARD */
+
+.rate-card{
+  display:none;
+  margin-top:20px;
+}
+
+.rate-card.show{
+  display:block;
+}
+
+.rate-header{
+  text-align:center;
+  padding:10px 0 20px;
+}
+
+.rate-logo{
+  width:48px;
+  height:48px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.rate-header h2{
+  font-size:25px;
+}
+
+.rate-header p{
+  color:var(--muted);
+  margin-top:5px;
+  font-size:13px;
+}
+
+.rate-profile{
+  text-align:center;
+  padding:20px;
+  border-radius:16px;
+  background:#0d1118;
+  border:1px solid #252c38;
+}
+
+.profile-name{
+  font-size:22px;
+  font-weight:900;
+}
+
+.profile-info{
+  color:#9299a8;
+  font-size:13px;
+  margin-top:5px;
+}
+
+.rate-price-box{
+  margin-top:15px;
+  padding:20px;
+  text-align:center;
+  border-radius:16px;
+  background:linear-gradient(135deg,#171327,#10131d);
+  border:1px solid #342d57;
+}
+
+.rate-price-label{
+  color:#9da5b5;
+  font-size:12px;
+}
+
+.rate-price{
+  margin-top:7px;
+  font-size:27px;
+  font-weight:900;
+  color:#a78bfa;
+}
+
+.rate-list{
+  margin-top:15px;
+  border:1px solid #252c38;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.rate-item{
   display:flex;
-  gap:10px;
-  margin-top:18px;
+  justify-content:space-between;
+  padding:13px 15px;
+  background:#0d1118;
+  border-bottom:1px solid #202530;
+  font-size:13px;
 }
 
-button{
-  flex:1;
-  border:0;
-  border-radius:12px;
-  padding:13px;
-  font-weight:700;
-  cursor:pointer;
-  font-size:14px;
+.rate-item:last-child{
+  border-bottom:0;
 }
 
-.btn-primary{
-  background:linear-gradient(135deg,#7c3aed,#2563eb);
+.rate-item span{
+  color:#aeb5c3;
+}
+
+.rate-item strong{
   color:#fff;
 }
 
-.btn-secondary{
-  background:#202530;
-  color:#fff;
-}
+/* FOOTER */
 
 .footer{
   text-align:center;
   color:#626a78;
   font-size:12px;
   margin-top:25px;
+  line-height:1.7;
 }
 
-.rate-card{
-  display
+/* TOAST */
+
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%) translateY(20px);
+  background:#1d2330;
+  color:#fff;
+  padding:12px 17px;
+  border-radius:12px;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  border:1px solid #343b4b;
+  z-index:100;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    width:min(94%,600px);
+  }
+}
+
+@media(max-width:520px){
+  .container{
+    padding-top:10px;
+  }
+
+  .header{
+    padding:18px 5px 25px;
+  }
+
+  .header h1{
+    font-size:25px;
+  }
+
+  .header p{
+    font-size:13px;
+  }
+
+  .card{
+    padding:17px;
+    border-radius:17px;
+  }
+
+  .price{
+    font-size:25px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stats .stat:last-child{
+    grid-column:1/-1;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .tier-name{
+    font-size:20px;
+  }
+
+  .row{
+    font-size:12px;
+  }
+}
+
+/* PRINT */
+
+@media print{
+  body{
+    background:#fff;
+    color:#111;
+  }
+
+  .header,
+  .grid,
+  .footer,
+  .toast{
+    display:none!important;
+  }
+
+  .rate-card{
+    display:block!important;
+    width:100%;
+    margin:0;
+    background:#fff;
+    color:#111;
+    border:0;
+  }
+
+  .rate-card .card{
+    background:#fff;
+    color:#111;
+    border:1px solid #ddd;
+    box-shadow:none;
+  }
+
+  .rate-card .profile-info,
+  .rate-card .rate-price-label,
+  .rate-card .rate-item span{
+    color:#555;
+  }
+
+  .rate-card .rate-price{
+    color:#333;
+  }
+
+  .rate-item{
+    background:#fff;
+    border-color:#ddd;
+  }
+
+  .rate-item strong{
+    color:#111;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">📊</div>
+
+    <h1>Creator <span>Rate Card</span></h1>
+
+    <p>
+      Kalkulator harga endorse untuk Content Creator
+    </p>
+  </header>
+
+
+  <!-- MAIN -->
+  <main class="grid">
+
+    <!-- INPUT -->
+    <section class="card">
+
+      <div class="card-title">
+        <div class="icon">⚙️</div>
+        Data Creator
+      </div>
+
+      <!-- FOLLOWERS -->
+      <div class="form-group">
+        <label for="followers">
+          Jumlah Followers
+        </label>
+
+        <div class="input-wrap">
+          <input
+            type="number"
+            id="followers"
+            min="0"
+            value="100000"
+            placeholder="Contoh: 100000"
+          >
+          <span class="suffix">followers</span>
+        </div>
+      </div>
+
+
+      <!-- VIEWS -->
+      <div class="form-group">
+        <label for="views">
+          Rata-rata Views
+        </label>
+
+        <div class="input-wrap">
+          <input
+            type="number"
+            id="views"
+            min="0"
+            value="50000"
+            placeholder="Contoh: 50000"
+          >
+          <span class="suffix">views</span>
+        </div>
+      </div>
+
+
+      <!-- ENGAGEMENT -->
+      <div class="form-group">
+        <label for="engagement">
+          Engagement Rate (%)
+        </label>
+
+        <div class="input-wrap">
+          <input
+            type="number"
+            id="engagement"
+            min="0"
+            max="100"
+            step="0.1"
+            value="5"
+            placeholder="Contoh: 5"
+          >
+          <span class="suffix">%</span>
+        </div>
+      </div>
+
+
+      <!-- PLATFORM -->
+      <div class="form-group">
+        <label for="platform">
+          Platform
+        </label>
+
+        <select id="platform">
+          <option value="instagram">Instagram</option>
+          <option value="tiktok">TikTok</option>
+          <option value="youtube">YouTube</option>
+        </select>
+      </div>
+
+
+      <!-- CONTENT -->
+      <div class="form-group">
+        <label for="content">
+          Jenis Konten
+        </label>
+
+        <select id="content">
+          <option value="story">Story</option>
+          <option value="feed">Feed</option>
+          <option value="reels">Reels / Short</option>
+          <option value="long">Long Video</option>
+          <option value="bundle">Paket Bundling</option>
+        </select>
+      </div>
+
+
+      <!-- NICHE -->
+      <div class="form-group">
+        <label for="niche">
+          Niche
+        </label>
+
+        <select id="niche">
+          <option value="lifestyle">Lifestyle</option>
+          <option value="beauty">Beauty</option>
+          <option value="fashion">Fashion</option>
+          <option value="food">Food & Culinary</option>
+          <option value="gaming">Gaming</option>
+          <option value="finance">Finance</option>
+          <option value="tech">Technology</option>
+          <option value="education">Education</option>
+          <option value="travel">Travel</option>
+          <option value="entertainment">Entertainment</option>
+        </select>
+      </div>
+
+
+      <!-- BUTTON -->
+      <div class="actions">
+
+        <button
+          class="btn-primary"
+          onclick="calculateRate()"
+        >
+          🧮 Hitung Rate Card
+        </button>
+
+        <button
+          class="btn-secondary"
+          onclick="resetForm()"
+        >
+          ↻ Reset
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- RESULT -->
+    <section class="card">
+
+      <div class="card-title">
+        <div class="icon">📈</div>
+        Hasil Estimasi
+      </div>
+
+
+      <!-- TIER -->
+      <div class="tier">
+
+        <div class="tier-top">
+
+          <div>
+            <div class="tier-label">
+              Tier Creator
+            </div>
+
+            <div
+              class="tier-name"
+              id="tierName"
+            >
+              Micro Creator
+            </div>
+          </div>
+
+          <div
+            class="tier-badge"
+            id="tierBadge"
+          >
+            10K - 100K
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PRICE -->
+      <div class="result-price">
+
+        <small>
+          Estimasi Harga Endorse
+        </small>
+
+        <div
+          class="price"
+          id="priceRange"
+        >
+          Rp 250.000 – Rp 600.000
+        </div>
+
+        <div class="price-sub">
+          per konten
+        </div>
+
+      </div>
+
+
+      <!-- STATS -->
+      <div class="stats">
+
+        <div class="stat">
+          <div class="stat-label">
+            Followers
+          </div>
+
+          <div
+            class="stat-value"
+            id="statFollowers"
+          >
+            100K
+          </div>
+        </div>
+
+
+        <div class="stat">
+          <div class="stat-label">
+            Avg. Views
+          </div>
+
+          <div
+            class="stat-value"
+            id="statViews"
+          >
+            50K
+          </div>
+        </div>
+
+
+        <div class="stat">
+          <div class="stat-label">
+            Engagement
+          </div>
+
+          <div
+            class="stat-value"
+            id="statEngagement"
+          >
+            5%
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- BREAKDOWN -->
+      <div class="section">
+
+        <div class="section-title">
+          💰 Breakdown Perhitungan
+        </div>
+
+        <div class="breakdown">
+
+          <div class="row">
+            <span>Base Rate</span>
+            <strong id="baseRate">
+              Rp 200.000 – Rp 400.000
+            </strong>
+          </div>
+
+          <div class="row">
+            <span>Bonus Engagement</span>
+            <strong id="engagementBonus">
+              Rp 25.000 – Rp 100.000
+            </strong>
+          </div>
+
+          <div class="row">
+            <span>Bonus Views</span>
+            <strong id="viewsBonus">
+              Rp 25.000 – Rp 100.000
+            </strong>
+          </div>
+
+          <div class="row">
+            <span>Platform</span>
+            <strong id="platformResult">
+              TikTok
+            </strong>
+          </div>
+
+          <div class="row">
+            <span>Jenis Konten</span>
+            <strong id="contentResult">
+              Reels / Short
+            </strong>
+          </div>
+
+          <div class="row">
+            <span>Niche</span>
+            <strong id="nicheResult">
+              Lifestyle
+            </strong>
+          </div>
+
+        </div>
+
+
+        <div class="total-row">
+
+          <span>
+            Total Estimasi
+          </span>
+
+          <strong id="totalRange">
+            Rp 250.000 – Rp 600.000
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- TIPS -->
+      <div class="section">
+
+        <div class="section-title">
+          💡 Tips Pricing
+        </div>
+
+        <div class="tip">
+          <b>1. Jangan hanya melihat followers.</b><br>
+          Perhatikan juga rata-rata views dan engagement karena keduanya membantu menggambarkan performa konten.
+        </div>
+
+        <div class="tip">
+          <b>2. Sesuaikan dengan jenis konten.</b><br>
+          Video biasanya membutuhkan produksi lebih banyak dibandingkan Story sederhana.
+        </div>
+
+        <div class="tip">
+          <b>3. Niche tertentu bisa memiliki nilai berbeda.</b><br>
+          Finance, technology, beauty, dan niche khusus dapat memiliki kebutuhan campaign yang berbeda.
+        </div>
+
+        <div class="tip">
+          <b>4. Gunakan harga sebagai titik awal negosiasi.</b><br>
+          Harga akhir tetap dapat disesuaikan dengan brief, durasi campaign, revisi, usage rights, dan kebutuhan brand.
+        </div>
+
+      </div>
+
+
+      <!-- ACTION -->
+      <div class="actions">
+
+        <button
+          class="btn-primary"
+          onclick="generateRateCard()"
+        >
+          📄 Buat Rate Card
+        </button>
+
+        <button
+          class="btn-secondary"
+          onclick="copyResult()"
+        >
+          📋 Copy
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- GENERATED RATE CARD -->
+  <section
+    class="card rate-card"
+    id="rateCard"
+  >
+
+    <div class="rate-header">
+
+      <div class="rate-logo">
+        📊
+      </div>
+
+      <h2>
+        CREATOR RATE CARD
+      </h2>
+
+      <p>
+        Media Kit & Pricing
+      </p>
+
+    </div>
+
+
+    <div class="rate-profile">
+
+      <div
+        class="profile-name"
+        id="rateTier"
+      >
+        Micro Creator
+      </div>
+
+      <div
+        class="profile-info"
+        id="rateProfileInfo"
+      >
+        Instagram • Lifestyle
+      </div>
+
+    </div>
+
+
+    <div class="rate-price-box">
+
+      <div class="rate-price-label">
+        ESTIMASI RATE
+      </div>
+
+      <div
+        class="rate-price"
+        id="ratePrice"
+      >
+        Rp 250.000 – Rp 600.000
+      </div>
+
+    </div>
+
+
+    <div class="rate-list">
+
+      <div class="rate-item">
+        <span>Followers</span>
+        <strong id="rateFollowers">100K</strong>
+      </div>
+
+      <div class="rate-item">
+        <span>Average Views</span>
+        <strong id="rateViews">50K</strong>
+      </div>
+
+      <div class="rate-item">
+        <span>Engagement Rate</span>
+        <strong id="rateEngagement">5%</strong>
+      </div>
+
+      <div class="rate-item">
+        <span>Platform</span>
+        <strong id="ratePlatform">Instagram</strong>
+      </div>
+
+      <div class="rate-item">
+        <span>Content Type</span>
+        <strong id="rateContent">Reels / Short</strong>
+      </div>
+
+      <div class="rate-item">
+        <span>Niche</span>
+        <strong id="rateNiche">Lifestyle</strong>
+      </div>
+
+    </div>
+
+
+    <div class="actions">
+
+      <button
+        class="btn-primary"
+        onclick="window.print()"
+      >
+        🖨️ Export / Print
+      </button>
+
+      <button
+        class="btn-secondary"
+        onclick="copyRateCard()"
+      >
+        📋 Copy Rate Card
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <footer class="footer">
+    Creator Rate Card Calculator<br>
+    Estimasi bersifat referensi dan dapat disesuaikan dengan kebutuhan campaign.
+  </footer>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast"
+>
+  Berhasil disalin!
+</div>
+
+
+<script>
+
+/* =========================================
+   DATA
+========================================= */
+
+const platformNames = {
+  instagram: "Instagram",
+  tiktok: "TikTok",
+  youtube: "YouTube"
+};
+
+const contentNames = {
+  story: "Story",
+  feed: "Feed",
+  reels: "Reels / Short",
+  long: "Long Video",
+  bundle: "Paket Bundling"
+};
+
+const nicheNames = {
+  lifestyle: "Lifestyle",
+  beauty: "Beauty",
+  fashion: "Fashion",
+  food: "Food & Culinary",
+  gaming: "Gaming",
+  finance: "Finance",
+  tech: "Technology",
+  education: "Education",
+  travel: "Travel",
+  entertainment: "Entertainment"
+};
+
+
+/* =========================================
+   FORMAT RUPIAH
+========================================= */
+
+function rupiah(number){
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(Math.round(number));
+
+}
+
+
+/* =========================================
+   FORMAT ANGKA
+========================================= */
+
+function shortNumber(number){
+
+  if(number >= 1000000){
+
+    return (
+      (number / 1000000)
+      .toFixed(number >= 10000000 ? 0 : 1)
+      .replace(".0","")
+      + "M"
+    );
+
+  }
+
+  if(number >= 1000){
+
+    return (
+      (number / 1000)
+      .toFixed(number >= 10000 ? 0 : 1)
+      .replace(".0","")
+      + "K"
+    );
+
+  }
+
+  return number.toLocaleString("id-ID");
+
+}
+
+
+/* =========================================
+   TIER CREATOR
+========================================= */
+
+function getTier(followers){
+
+  if(followers < 10000){
+
+    return {
+      name:"Nano Creator",
+      range:"< 10K"
+    };
+
+  }
+
+  if(followers < 100000){
+
+    return {
+      name:"Micro Creator",
+      range:"10K - 100K"
+    };
+
+  }
+
+  if(followers < 1000000){
+
+    return {
+      name:"Mid Creator",
+      range:"100K - 1M"
+    };
+
+  }
+
+  return {
+    name:"Macro Creator",
+    range:"> 1M"
+  };
+
+}
+
+
+/* =========================================
+   HITUNG RATE
+========================================= */
+
+function calculateRate(){
+
+  let followers =
+    Number(document.getElementById("followers").value) || 0;
+
+  let views =
+    Number(document.getElementById("views").value) || 0;
+
+  let engagement =
+    Number(document.getElementById("engagement").value) || 0;
+
+  const platform =
+    document.getElementById("platform").value;
+
+  const content =
+    document.getElementById("content").value;
+
+  const niche =
+    document.getElementById("niche").value;
+
+
+  /* BATAS */
+
+  if(followers < 0) followers = 0;
+  if(views < 0) views = 0;
+
+  if(engagement < 0) engagement = 0;
+  if(engagement > 100) engagement = 100;
+
+
+  /* TIER */
+
+  const tier = getTier(followers);
+
+
+  /* BASE RATE */
+
+  let baseMin;
+  let baseMax;
+
+  if(followers < 10000){
+
+    baseMin = 50000;
+    baseMax = 150000;
+
+  }else if(followers < 100000){
+
+    baseMin = 150000;
+    baseMax = 400000;
+
+  }else if(followers < 1000000){
+
+    baseMin = 400000;
+    baseMax = 1500000;
+
+  }else{
+
+    baseMin = 1500000;
+    baseMax = 5000000;
+
+  }
+
+
+  /* PLATFORM MULTIPLIER */
+
+  const platformMultiplier = {
+
+    instagram:1.00,
+    tiktok:1.05,
+    youtube:1.25
+
+  };
+
+  const pm =
+    platformMultiplier[platform] || 1;
+
+
+  baseMin *= pm;
+  baseMax *= pm;
+
+
+  /* CONTENT MULTIPLIER */
+
+  const contentMultiplier = {
+
+    story:.55,
+    feed:1.00,
+    reels:1.25,
+    long:2.00,
+    bundle:2.75
+
+  };
+
+  const cm =
+    contentMultiplier[content] || 1;
+
+
+  baseMin *= cm;
+  baseMax *= cm;
+
+
+  /* NICHE MULTIPLIER */
+
+  const nicheMultiplier = {
+
+    lifestyle:1.00,
+    beauty:1.10,
+    fashion:1.05,
+    food:1.00,
+    gaming:1.05,
+    finance:1.20,
+    tech:1.15,
+    education:1.05,
+    travel:1.05,
+    entertainment:1.00
+
+  };
+
+  const nm =
+    nicheMultiplier[niche] || 1;
+
+
+  baseMin *= nm;
+  baseMax *= nm;
+
+
+  /* ENGAGEMENT BONUS */
+
+  let engagementFactor =
+    Math.max(0, engagement - 2) / 10;
+
+  let engagementMin =
+    baseMin * engagementFactor * .35;
+
+  let engagementMax =
+    baseMax * engagementFactor * .50;
+
+
+  /* VIEW BONUS */
+
+  let expectedViews =
+    followers * .25;
+
+  let viewRatio =
+    expectedViews > 0
+      ? views / expectedViews
+      : 0;
+
+  let viewBonusFactor =
+    Math.min(Math.max(viewRatio - 1,0),2);
+
+  let viewsMin =
+    baseMin * viewBonusFactor * .10;
+
+  let viewsMax =
+    baseMax * viewBonusFactor * .18;
+
+
+  /* TOTAL */
+
+  let totalMin =
+    baseMin + engagementMin + viewsMin;
+
+  let totalMax =
+    baseMax + engagementMax + viewsMax;
+
+
+  /* BUNDLING BONUS */
+
+  if(content === "bundle"){
+
+    totalMin *= .90;
+    totalMax *= .90;
+
+  }
+
+
+  /* PEMBULATAN */
+
+  totalMin =
+    Math.round(totalMin / 5000) * 5000;
+
+  totalMax =
+    Math.round(totalMax / 5000) * 5000;
+
+
+  /* UPDATE UI */
+
+  document.getElementById("tierName").textContent =
+    tier.name;
+
+  document.getElementById("tierBadge").textContent =
+    tier.range;
+
+
+  document.getElementById("priceRange").textContent =
+    rupiah(totalMin) + " – " + rupiah(totalMax);
+
+
+  document.getElementById("totalRange").textContent =
+    rupiah(totalMin) + " – " + rupiah(totalMax);
+
+
+  document.getElementById("baseRate").textContent =
+    rupiah(baseMin) + " – " + rupiah(baseMax);
+
+
+  document.getElementById("engagementBonus").textContent =
+    rupiah(engagementMin) + " – " + rupiah(engagementMax);
+
+
+  document.getElementById("viewsBonus").textContent =
+    rupiah(viewsMin) + " – " + rupiah(viewsMax);
+
+
+  document.getElementById("platformResult").textContent =
+    platformNames[platform];
+
+
+  document.getElementById("contentResult").textContent =
+    contentNames[content];
+
+
+  document.getElementById("nicheResult").textContent =
+    nicheNames[niche];
+
+
+  document.getElementById("statFollowers").textContent =
+    shortNumber(followers);
+
+
+  document.getElementById("statViews").textContent =
+    shortNumber(views);
+
+
+  document.getElementById("statEngagement").textContent =
+    engagement + "%";
+
+
+  /* SAVE */
+
+  window.rateData = {
+
+    followers,
+    views,
+    engagement,
+    platform,
+    content,
+    niche,
+
+    tier,
+
+    totalMin,
+    totalMax,
+
+    baseMin,
+    baseMax,
+
+    engagementMin,
+    engagementMax,
+
+    viewsMin,
+    viewsMax
+
+  };
+
+
+  return window.rateData;
+
+}
+
+
+/* =========================================
+   GENERATE RATE CARD
+========================================= */
+
+function generateRateCard(){
+
+  const data =
+    calculateRate();
+
+
+  document
+    .getElementById("rateCard")
+    .classList.add("show");
+
+
+  document.getElementById("rateTier").textContent =
+    data.tier.name;
+
+
+  document.getElementById("rateProfileInfo").textContent =
+    platformNames[data.platform]
+    + " • "
+    + nicheNames[data.niche];
+
+
+  document.getElementById("ratePrice").textContent =
+    rupiah(data.totalMin)
+    + " – "
+    + rupiah(data.totalMax);
+
+
+  document.getElementById("rateFollowers").textContent =
+    shortNumber(data.followers);
+
+
+  document.getElementById("rateViews").textContent =
+    shortNumber(data.views);
+
+
+  document.getElementById("rateEngagement").textContent =
+    data.engagement + "%";
+
+
+  document.getElementById("ratePlatform").textContent =
+    platformNames[data.platform];
+
+
+  document.getElementById("rateContent").textContent =
+    contentNames[data.content];
+
+
+  document.getElementById("rateNiche").textContent =
+    nicheNames[data.niche];
+
+
+  document
+    .getElementById("rateCard")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+}
+
+
+/* =========================================
+   COPY HASIL
+========================================= */
+
+function copyResult(){
+
+  const data =
+    window.rateData || calculateRate();
+
+  const text = `
+CREATOR RATE CARD
+
+Tier:
+${data.tier.name}
+
+Followers:
+${shortNumber(data.followers)}
+
+Average Views:
+${shortNumber(data.views)}
+
+Engagement Rate:
+${data.engagement}%
+
+Platform:
+${platformNames[data.platform]}
+
+Jenis Konten:
+${contentNames[data.content]}
+
+Niche:
+${nicheNames[data.niche]}
+
+ESTIMASI HARGA:
+${rupiah(data.totalMin)} – ${rupiah(data.totalMax)}
+
+BREAKDOWN:
+Base Rate:
+${rupiah(data.baseMin)} – ${rupiah(data.baseMax)}
+
+Bonus Engagement:
+${rupiah(data.engagementMin)} – ${rupiah(data.engagementMax)}
+
+Bonus Views:
+${rupiah(data.viewsMin)} – ${rupiah(data.viewsMax)}
+
+Catatan:
+Harga merupakan estimasi dan dapat disesuaikan dengan brief campaign.
+`.trim();
+
+
+  copyText(text);
+
+}
+
+
+/* =========================================
+   COPY RATE CARD
+========================================= */
+
+function copyRateCard(){
+
+  const data =
+    window.rateData || calculateRate();
+
+  const text = `
+📊 CREATOR RATE CARD
+
+${data.tier.name}
+
+Followers: ${shortNumber(data.followers)}
+Average Views: ${shortNumber(data.views)}
+Engagement Rate: ${data.engagement}%
+
+Platform: ${platformNames[data.platform]}
+Content: ${contentNames[data.content]}
+Niche: ${nicheNames[data.niche]}
+
+💰 ESTIMASI RATE
+${rupiah(data.totalMin)} – ${rupiah(data.totalMax)}
+
+Harga dapat disesuaikan berdasarkan brief campaign, revisi, durasi, dan usage rights.
+`.trim();
+
+
+  copyText(text);
+
+}
+
+
+/* =========================================
+   COPY FUNCTION
+========================================= */
+
+function copyText(text){
+
+  if(navigator.clipboard){
+
+    navigator.clipboard
+      .writeText(text)
+      .then(showToast)
+      .catch(function(){
+        fallbackCopy(text);
+      });
+
+  }else{
+
+    fallbackCopy(text);
+
+  }
+
+}
+
+
+function fallbackCopy(text){
+
+  const textarea =
+    document.createElement("textarea");
+
+  textarea.value = text;
+
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+
+  document.body.appendChild(textarea);
+
+  textarea.select();
+
+  try{
+    document.execCommand("copy");
+    showToast();
+  }catch(e){
+    alert("Gagal menyalin. Silakan copy secara manual.");
+  }
+
+  document.body.removeChild(textarea);
+
+}
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+function showToast(){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.classList.add("show");
+
+  setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },2200);
+
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+function resetForm(){
+
+  document.getElementById("followers").value =
+    100000;
+
+  document.getElementById("views").value =
+    50000;
+
+  document.getElementById("engagement").value =
+    5;
+
+  document.getElementById("platform").value =
+    "instagram";
+
+  document.getElementById("content").value =
+    "reels";
+
+  document.getElementById("niche").value =
+    "lifestyle";
+
+
+  document
+    .getElementById("rateCard")
+    .classList.remove("show");
+
+
+  calculateRate();
+
+}
+
+
+/* =========================================
+   AUTO CALCULATE SAAT HALAMAN DIBUKA
+========================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    calculateRate();
+
+  }
+);
+
+
+/* =========================================
+   ENTER UNTUK HITUNG
+========================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      calculateRate();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
